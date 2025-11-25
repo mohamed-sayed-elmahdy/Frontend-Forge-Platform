@@ -54,6 +54,15 @@
       "apple": "/apple-touch-icon.png"
     }
   }
-  
+  , "adminBreadcrumbs": {
+    "adminDashboard": "Admin Dashboard",
+    "home": "Home",
+    "overview": "Overview",
+    "blogList": "Blog List",
+    "addBlog": "Add Blog",
+    "editBlog": "Edit Blog",
+    "blogsCategories": "Blog Categories",
+    "blogSubscriptions": "Blog Subscriptions"
+  }
 }
   

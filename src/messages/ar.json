@@ -53,7 +53,16 @@
             "shortcut": "/favicon-16x16.png",
             "apple": "/apple-touch-icon.png"
         }
+    }, 
+    "adminBreadcrumbs": {
+        "adminDashboard": "لوحة تحكم المسؤول",
+        "home": "الصفحة الرئيسية",
+        "overview": "نظرة عامة",
+        "blogList": "قائمة المدونات",
+        "addBlog": "إضافة مدونة",
+        "editBlog": "تحرير المدونة",
+        "blogsCategories": "فئات المدونات",
+        "blogSubscriptions": "اشتراكات المدونات"
     }
-    
  
 }

@@ -383,3 +383,378 @@ export default function ThemeCustomizer() {
 
 تحب أعملك نسخة محسّنة من الـ UI (زي ClickUp بالظبط في التصميم والمودال بتاع الثيم)؟
 لو قلت أيوه، أعملهولك بكود كامل بـ Tailwind + Framer Motion. -->
+
+---
+
+## Bundle impact report (automated scan)
+
+Below is a focused report that identifies files likely increasing client bundle size and gives concrete optimizations and rough before/after estimates. Run the bundle-analyzer (instructions below) to verify exact bytes.
+
+### Top candidate files / modules
+
+1) `src/components/interviews/CodeBlock.jsx`
+- Likely contribution: imports `react-syntax-highlighter` (Prism) plus many theme/style objects. Multiple style imports significantly increase bundle size.
+- Suggested optimization:
+  - Lazy-load the entire CodeBlock component with `next/dynamic({ ssr: false })` so the syntax-highlighter code is not included in initial bundles.
+  - Dynamically import only the SyntaxHighlighter runtime and a single theme/style when needed.
+  - Consider replacing with `prism-react-renderer` or server-side highlighting to avoid shipping the highlighter to the client.
+- Rough estimate: before 80–220 KB; after (lazy/replacement) 0–25 KB in initial bundle.
+
+2) `src/components/interviews/AnswerMarkdownRenderer.jsx`
+- Likely contribution: `react-markdown` + `rehype-raw` + `rehype-sanitize` used client-side. Markdown parser + rehype plugins add runtime.
+- Suggested optimization:
+  - Render markdown on the server and send sanitized HTML to the client.
+  - If client rendering is required, lazy-load `react-markdown` only where needed.
+- Rough estimate: before 40–120 KB; after server-render or lazy-load 0–15 KB initial.
+
+3) `src/components/blog/BlogCard.jsx` and `src/components/shared/PublicNavbar.jsx`
+- Likely contribution: many `react-icons` imports (multiple icon packs). Icons in navbars and cards are part of initial bundle.
+- Suggested optimization:
+  - Replace `react-icons` with inline SVG components or a small icon system (sprite, `unplugin-icons`), or ensure you import only the exact icons used.
+  - Lazy-load non-critical icons.
+- Rough estimate combined: before 30–120 KB; after 3–10 KB.
+
+4) `lucide-react` usages across multiple UI files (nav, sidebar, breadcrumb, dropdown, sheet)
+- Likely contribution: named icon imports across many files increase the set of icons included on initial routes.
+- Suggested optimization:
+  - Inline critical icons as small React components; lazy-load others.
+  - Centralize icon imports to a single module to make it easier to audit which icons are used on initial render.
+- Rough estimate: before 20–100 KB; after 5–20 KB.
+
+5) `src/providers/ReactQueryProvider.jsx`
+- Likely contribution: `@tanstack/react-query` and possibly `@tanstack/react-query-devtools` (devtools should not be bundled in production).
+- Suggested optimization:
+  - Ensure devtools are only loaded in development (`if (process.env.NODE_ENV === 'development')`).
+  - Keep heavy query logic server-side where possible; only hydrate minimal data on client.
+- Rough estimate: before 20–60 KB; after 2–15 KB.
+
+6) `src/app/layout.jsx` and `src/app/(public)/layout.jsx`
+- Likely contribution: `NextIntlClientProvider` and `next-themes` providers add client runtime for translations and theme switching if used at top-level.
+- Suggested optimization:
+  - Move translation rendering to server components where possible (use `next-intl/server`).
+  - Limit `next-themes` to client components that actually toggle theme (avoid wrapping entire app unless needed).
+- Rough estimate: before 15–50 KB; after serverizing or lazy-loading 0–15 KB.
+
+
+### Overall recommendations to get JS < 1.5 MB
+- Run the bundle analyzer (exact commands below) to get a precise module-bytes map. Focus the optimization effort on the top 3–5 modules from the analyzer.
+- Move non-interactive page parts to server components so the client receives less JS.
+- Lazy-load heavy client libraries (syntax highlighter, markdown, charting libraries, editors).
+- Replace `react-syntax-highlighter` with a lighter solution or server-render highlights.
+- Replace `react-icons`/`lucide` where possible with inline SVGs or smaller icon systems.
+- Ensure dev-only tooling (React Query Devtools, storybook, debug helpers) is excluded from production bundles.
+
+
+### Quick analyzer setup (recommended)
+1. Add `@next/bundle-analyzer` to `next.config.js`:
+```js
+const withBundleAnalyzer = require('@next/bundle-analyzer')({ enabled: process.env.ANALYZE === 'true' });
+module.exports = withBundleAnalyzer({ /* existing config */ });
+```
+2. Run analyzer in PowerShell:
+```powershell
+$env:ANALYZE = "true"; npm run build
+```
+
+---
+
+If you want, I can add the analyzer config and an `analyze` npm script, run the build, and produce an exact per-file byte report. Reply with `analyze` to have me add/execute those changes.
+
+---
+
+## Per-file BEFORE / AFTER examples (concrete edits you can apply)
+
+Below are concrete "before" and "after" code snippets for the files that typically inflate bundles in this repo. Apply these refactors in small PRs and run the bundle analyzer to measure effect.
+
+### 1) `src/components/interviews/CodeBlock.jsx`
+- Before (current pattern — heavy top-level imports):
+
+```javascript
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark, nord, materialDark, dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+
+export default function CodeBlock({ code, language }) {
+  return (
+    <SyntaxHighlighter style={oneDark} language={language}>
+      {code}
+    </SyntaxHighlighter>
+  );
+}
+```
+
+- After (lazy-load highlighter inside the component, avoid multiple style imports at module scope):
+
+```javascript
+import React, { useEffect, useState } from 'react'
+
+export default function CodeBlock({ code, language }) {
+  const [High, setHigh] = useState(null)
+  const [style, setStyle] = useState(null)
+
+  useEffect(() => {
+    let mounted = true
+    Promise.all([
+      import('react-syntax-highlighter/dist/esm/prism').then(m => m.Prism),
+      import('react-syntax-highlighter/dist/esm/styles/prism').then(s => s.oneDark)
+    ]).then(([Prism, oneDark]) => {
+      if (!mounted) return
+      setHigh(() => Prism)
+      setStyle(oneDark)
+    })
+    return () => { mounted = false }
+  }, [])
+
+  if (!High) return <pre className="rounded-md p-2 bg-neutral-900 text-sm">{code}</pre>
+
+  return (
+    <High style={style} language={language}>
+      {code}
+    </High>
+  )
+}
+```
+
+### 2) `src/components/interviews/AnswerMarkdownRenderer.jsx`
+- Before (client-side markdown parser):
+
+```javascript
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+import rehypeSanitize from 'rehype-sanitize'
+
+export default function AnswerMarkdownRenderer({ content }) {
+  return (
+    <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{content}</ReactMarkdown>
+  )
+}
+```
+
+- After Option A — Server-side render & sanitize (preferred):
+
+```javascript
+// lib/markdown.server.js (server-only)
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeSanitize from 'rehype-sanitize'
+import rehypeStringify from 'rehype-stringify'
+
+export async function markdownToHtml(markdown) {
+  const vfile = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeSanitize)
+    .use(rehypeStringify)
+    .process(markdown)
+  return String(vfile)
+}
+```
+
+```javascript
+// server page/component
+import { markdownToHtml } from '@/lib/markdown.server'
+
+export default async function Page() {
+  const html = await markdownToHtml(rawMarkdownFromDb)
+  return <div dangerouslySetInnerHTML={{ __html: html }} />
+}
+```
+
+- After Option B — Client lazy-load (if server render impossible):
+
+```javascript
+import dynamic from 'next/dynamic'
+const ReactMarkdown = dynamic(() => import('react-markdown'), { ssr: false })
+
+export default function AnswerMarkdownRenderer({ content }) {
+  return <ReactMarkdown>{content}</ReactMarkdown>
+}
+```
+
+### 3) `src/components/blog/BlogCard.jsx` (icons)
+- Before (react-icons used directly):
+
+```javascript
+import { FaArrowRight, FaHeart, FaBookmark } from 'react-icons/fa6'
+
+export default function BlogCard({ post }) {
+  return (
+    <article>
+      <h3>{post.title}</h3>
+      <div className="icons">
+        <FaHeart />
+        <FaBookmark />
+        <FaArrowRight />
+      </div>
+    </article>
+  )
+}
+```
+
+- After (inline/small Icon component):
+
+```javascript
+// src/components/ui/Icon.jsx
+export default function Icon({ name, className }) {
+  const icons = {
+    'arrow-right': (
+      <svg viewBox="0 0 24 24" fill="none" className={className}><path d="M5 12h14" stroke="currentColor"/><path d="M13 6l6 6-6 6" stroke="currentColor"/></svg>
+    ),
+    'heart': (<svg .../>),
+    'bookmark': (<svg .../>)
+  }
+  return icons[name] || null
+}
+```
+
+```javascript
+import Icon from '@/components/ui/Icon'
+
+export default function BlogCard({ post }) {
+  return (
+    <article>
+      <h3>{post.title}</h3>
+      <div className="icons">
+        <Icon name="heart" />
+        <Icon name="bookmark" />
+        <Icon name="arrow-right" />
+      </div>
+    </article>
+  )
+}
+```
+
+### 4) `src/components/shared/PublicNavbar.jsx` (reduce icon cost)
+- Before (multiple icon packs):
+
+```javascript
+import { CiLocationArrow1 } from 'react-icons/ci'
+import { IoSearch } from 'react-icons/io5'
+import { HiOutlineMenu } from 'react-icons/hi'
+
+export default function PublicNavbar() {
+  return (
+    <nav>
+      <HiOutlineMenu />
+      <IoSearch />
+      <CiLocationArrow1 />
+    </nav>
+  )
+}
+```
+
+- After (centralize icons + inline critical ones):
+
+```javascript
+import Icon from '@/components/ui/Icon'
+
+export default function PublicNavbar() {
+  return (
+    <nav>
+      <Icon name="menu" />
+      <Icon name="search" />
+      <Icon name="location" />
+    </nav>
+  )
+}
+```
+
+### 5) `src/providers/ReactQueryProvider.jsx`
+- Before (devtools imported at module scope):
+
+```javascript
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+const queryClient = new QueryClient()
+
+export default function ReactQueryProvider({ children }) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  )
+}
+```
+
+- After (devtools lazy-loaded only in development):
+
+```javascript
+import React, { useEffect, useState } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
+
+export default function ReactQueryProvider({ children }) {
+  const [Devtools, setDevtools] = useState(null)
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      import('@tanstack/react-query-devtools').then(mod => {
+        setDevtools(() => mod.ReactQueryDevtools)
+      })
+    }
+  }, [])
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+      {Devtools ? <Devtools initialIsOpen={false} /> : null}
+    </QueryClientProvider>
+  )
+}
+```
+
+### 6) `src/app/layout.jsx` and `src/app/(public)/layout.jsx` (providers)
+- Before (client-heavy providers at root):
+
+```javascript
+"use client"
+import { NextIntlClientProvider } from 'next-intl'
+import { ThemeProvider } from 'next-themes'
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <NextIntlClientProvider>
+          <ThemeProvider attribute="class">{children}</ThemeProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+- After (keep layout server-side; provide client providers only where needed):
+
+```javascript
+// app/layout.jsx (server component)
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+```javascript
+// src/components/ClientProviders.jsx (client component)
+"use client"
+import { NextIntlClientProvider } from 'next-intl'
+import { ThemeProvider } from 'next-themes'
+
+export default function ClientProviders({ children, messages }) {
+  return (
+    <NextIntlClientProvider messages={messages}>
+      <ThemeProvider attribute="class">{children}</ThemeProvider>
+    </NextIntlClientProvider>
+  )
+}
+```
+
+---
+
+If you'd like, I can implement one or more of the refactors above directly in the repository (e.g., convert `CodeBlock.jsx` and `ReactQueryProvider.jsx` now), then run the bundle analyzer and report exact before/after bytes. Tell me which file(s) you want changed and I'll make the edits and measure the result.

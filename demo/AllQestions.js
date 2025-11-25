@@ -131,7 +131,6 @@ const jsQuestions = [
     { id: 43, level: "Intermediate", question: "What is the difference between this in a regular function and in an arrow function?" },
     { id: 44, level: "Intermediate", question: "What is the difference between lexical scope and dynamic scope?" },
     { id: 45, level: "Intermediate", question: "What is the difference between function scope and block scope?" },
-    { id: 46, level: "Intermediate", question: "What is hoisting and how does it work?" },
     { id: 47, level: "Intermediate", question: "What is the difference between the temporal dead zone and hoisting?" },
     { id: 48, level: "Intermediate", question: "What is an IIFE (Immediately Invoked Function Expression) and how is it different from a regular function?" },
     { id: 49, level: "Intermediate", question: "What is event bubbling?" },

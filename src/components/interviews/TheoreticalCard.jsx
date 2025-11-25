@@ -115,7 +115,7 @@ export default function TheoreticalCard({ question }) {
 
 
             {/* Answer */}
-            <div ref={answerRef} style={{ maxHeight: maxHeight > 0 ? `${maxHeight}px` : "0px", opacity: opacity }} className={`relative overflow-x-hidden overflow-y-auto transition-all duration-1000 border border-[var(--border-soft)] rounded-xl  ${showAnswer ? "p-3 mb-4" : " p-0 border-0 mb-0"}`} id="answer">
+            <div ref={answerRef} style={{ maxHeight: maxHeight > 0 ? `${maxHeight}px` : "0px", opacity: opacity }} className={`relative overflow-x-hidden overflow-y-auto transition-all duration-1000 border border-[var(--border-soft)] rounded-xl  ${showAnswer ? "p-3 mb-4 mt-4" : " p-0 border-0 mb-0 mt-0"}`} id="answer">
                 <div className={`${question?.answer?.[locale] ? "sticky" : "absolute"} top-2 end-2 z-20 flex justify-end`}>
                     <button
                         className="rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 flex items-center space-x-2 rtl:space-x-reverse bg-transparent"

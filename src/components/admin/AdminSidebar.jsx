@@ -1,15 +1,14 @@
 "use client"
+import { FaBloggerB } from "react-icons/fa";
+import { TbMapQuestion } from "react-icons/tb";
 
-import * as React from "react"
 import {
-  BookOpen,
   Command,
   Frame,
   LifeBuoy,
   Map,
   PieChart,
   Send,
-  Settings2,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -31,84 +30,49 @@ const data = {
   user: {
     name: "Mohamed Sayed",
     email: "m@example.com",
-    avatar: "https://ui.shadcn.com/avatars/shadcn.jpg",
+    avatar: "https://res.cloudinary.com/diw11kbbx/image/upload/v1761164895/blogs/rsmtbb0hnhc78vphjcwa.png",
   },
   navMain: [
-        {
-      title: "Interviews",
-      url: "/dashboard/jsInterviews",
-      icon: BookOpen,
-      items: [
-        {
-          title: "React Interviews",
-          url: "/dashboard/reactInterviews",
-        },
-        
-        {
-          title: "JS Interviews",
-          url: "/dashboard/jsInterviews",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
     {
       title: "Blogs",
-      url: "/dashboard/blogs",
-      icon: BookOpen,
+      url: "/admin/dashboard/blogList",
+      icon: FaBloggerB,
+      isActive: true,
       items: [
         {
-          title: "All Blogs",
+          title: "View All Blogs",
+          url: "/admin/dashboard/blogList",
+        },
+        {
+          title: "Add New Blog",
+          url: "/admin/dashboard/addBlog",
+        },
+        {
+          title: "Edit Blog",
+          url: "/admin/dashboard/editBlog",
+        },
+        {
+          title: "View Categories",
+          url: "/admin/dashboard/blogsCategories",
+        },
+        {
+          title: "Blog Subscriptions",
+          url: "/admin/dashboard/blogSubscriptions",
+        },
+      ],
+    },
+    {
+      title: "Interviews",
+      url: "/admin/dashboard/interviews",
+      icon: TbMapQuestion,
+      items: [
+        {
+          title: "All Categories",
           url: "#",
         },
         
       ],
     },
-
   ],
   navSecondary: [
     {
@@ -141,7 +105,7 @@ const data = {
   ],
 }
 
-export function AppSidebar({
+export default function AdminSidebar({
   ...props
 }) {
   const locale = useLocale();
