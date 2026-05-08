@@ -11,7 +11,6 @@ export default function MarketingHomePage() {
             <LatestBlogSection />
             <LatestIntervQSection />
             <NewsLetterSection />
-
         </>
     );
 } 
