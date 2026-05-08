@@ -4,6 +4,7 @@ import PublicNavbar from "@/components/shared/PublicNavbar";
 import PublicFooter from "@/components/shared/PublicFooter";
 import LightRays from "@/components/ui/LightRays";
 import { useTheme } from 'next-themes';
+import { Analytics } from "@vercel/analytics/next"
 export default function PublicLayout({ children }) {
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -62,6 +63,7 @@ export default function PublicLayout({ children }) {
       <PublicNavbar />
       <main className="pt-12 relative z-10">{children}</main>
       <PublicFooter />
+      <Analytics />
     </div>
   );
 }
