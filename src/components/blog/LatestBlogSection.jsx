@@ -19,11 +19,11 @@ function LatestBlogSection() {
     if (!categoriesLoading && (!categories || categories.length === 0)) {
         return <p className="text-center mt-4 mb-20">No categories found</p>;
     }
-    if (categoriesError) return <p>Can&#39;t load categories</p>;
+    if (categoriesError) return <p className="text-center mt-4 mb-20">Can&#39;t load categories</p>;
     if (!blogsLoading && (!blogs || blogs.length === 0)) {
-        return <p>No blogs found</p>;
+        return <p className="text-center mt-4 mb-20">No blogs found</p>;
     }
-    if (blogsError) return <p>Can&#39;t load blogs</p>;
+    if (blogsError) return <p className="text-center mt-4 mb-20">Can&#39;t load blogs</p>;
     console.log(categories, blogs, filteredBlogs);
     return (
         <div className="max-w-[var(--max-width)] justify-center items-center">
@@ -48,7 +48,7 @@ function LatestBlogSection() {
                         />
                 ))
             ) : (
-                <p>No blogs found</p>
+                <p className="text-center mt-4 mb-20">No blogs found</p>
             )}
             </div>
             <div className="flex items-center justify-center mt-10 mb-20">
