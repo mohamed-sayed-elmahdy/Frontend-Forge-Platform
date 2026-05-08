@@ -55,8 +55,7 @@ const blogSchema = new Schema(
     ],
   },
   { timestamps: true }
-);
-
+)
 
 blogSchema.index({ "tags.en": 1, "tags.ar": 1 });
 blogSchema.index({ "category.en": 1, "category.ar": 1 });
