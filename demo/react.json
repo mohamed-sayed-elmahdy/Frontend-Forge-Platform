@@ -6,6 +6,86 @@
       "ar": "نظري"
     },
     "difficulty": {
+      "en": "easy",
+      "ar": "سهل"
+    },
+    "categories": [
+      {
+        "en": "React",
+        "ar": "ريأكت"
+      }
+    ],
+    "tags": [
+      {
+        "en": "JSX, React, syntax",
+        "ar": "JSX، ريأكت، بناء الجملة"
+      }
+    ],
+    "question": {
+      "en": "What is JSX?",
+      "ar": " ما هو JSX؟"
+    },
+    "codeSnippetQuestion": {
+      "code": "",
+      "lang": ""
+    },
+    "examples": [],
+    "media": {
+      "image": "",
+      "video": "",
+      "audio": ""
+    },
+    "optionsForMcq": [
+      {
+        "id": "",
+        "text": {
+          "en": "",
+          "ar": ""
+        },
+        "isCorrect": false,
+        "feedback": {
+          "en": "",
+          "ar": ""
+        }
+      }
+    ],
+    "answer": {
+      "en": " # **Answer:**\n\n **✨JSX (JavaScript XML)** is a syntax extension for JavaScript that allows us to write **HTML-like code** inside JavaScript, mainly used with **React**.\n\n It makes the UI structure easier to visualize and more readable compared to using plain JavaScript functions like `React.createElement`.\n\n<br>⚙️  **How JSX Works**\n\n Although JSX looks like HTML, **it’s not HTML**.\n\n Under the hood, JSX is **compiled into JavaScript objects**, which React uses to efficiently build and update the UI through the **Virtual DOM**.\n\n<br>\n\n💡 **Why JSX is Useful**\n\nJSX supports:\n\n● **Embedding JavaScript expressions** using `{}`\n\n● **Creating reusable UI components**\n\n● Combining **structure (markup)**, **logic**, and **styling** in one place\n\n This makes building interfaces in React more intuitive and modular.",
+      "ar": "",
+      "hints": {
+        "en": [],
+        "ar": []
+      },
+      "codeSnippetAnswer": {
+        "code": "",
+        "lang": "javascript"
+      }
+    },
+    "evaluation": {
+      "points": 5,
+      "timeEstimate": ""
+    },
+    "interaction": {
+      "testYourself": true,
+      "showAnswer": true,
+      "markAsMemorized": true
+    },
+    "metadata": {
+      "author": "Mohamed Sayed",
+      "createdAt": "",
+      "updatedAt": "",
+      "references": [
+        "https://react.dev/learn/writing-markup-with-jsx"
+      ]
+    }
+  },
+  {
+    "id": "2",
+    "type": {
+      "en": "theoretical",
+      "ar": "نظري"
+    },
+    "difficulty": {
       "en": "medium",
       "ar": "متوسط"
     },
@@ -25,7 +105,10 @@
       "en": "What is useState and why do we use it in React?",
       "ar": "ما هو useState ولماذا نستخدمه في React؟"
     },
-    "codeSnippetQuestion": {"code": "egfwegweg", "lang": "jsx"},
+    "codeSnippetQuestion": {
+      "code": "",
+      "lang": ""
+    },
     "examples": [],
     "media": {
       "image": "",
@@ -53,7 +136,10 @@
         "en": [],
         "ar": []
       },
-      "codeSnippetAnswer": {"code": "", "lang": "javascript"}
+      "codeSnippetAnswer": {
+        "code": "",
+        "lang": "javascript"
+      }
     },
     "evaluation": {
       "points": 5,
@@ -74,7 +160,7 @@
     }
   },
   {
-    "id": "2",
+    "id": "3",
     "type": {
       "en": "theoretical",
       "ar": "نظري"

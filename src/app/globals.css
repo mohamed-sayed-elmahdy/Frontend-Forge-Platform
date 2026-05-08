@@ -83,13 +83,13 @@
   --accent-color: #00ffff;
   /*  Light Mode Gradients */
   --bg-gradient-top-left: linear-gradient(to top left,
-      #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e4e4e4, #d7d7d7);
+      #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
   --bg-gradient-bottom-left: linear-gradient(to bottom left,
-      #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e4e4e4, #d7d7d7);
+         #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
   --bg-gradient-top-right: linear-gradient(to top right,
-      #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e4e4e4, #d7d7d7);
+       #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
   --bg-gradient-bottom-right: linear-gradient(to bottom right,
-      #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e4e4e4, #d7d7d7);
+         #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
 
   /*  Light Mode Stars */
   --star-color: rgba(0, 0, 0, 0.5);
@@ -239,6 +239,9 @@ html[lang="en"] {
 .star {
   background-color: var(--star-color);
   border-radius: 50%;
+  position: absolute;
+  width: 2px;
+  height: 2px;
 }
 
 

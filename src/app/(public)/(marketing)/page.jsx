@@ -8,7 +8,6 @@ export default function MarketingHomePage() {
     return (
         <>
             <HeroSection />
-      
             <LatestBlogSection />
             <LatestIntervQSection />
             <NewsLetterSection />

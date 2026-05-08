@@ -17,7 +17,7 @@ function LatestBlogSection() {
     }, [selectedCategory]);
 
     if (!categoriesLoading && (!categories || categories.length === 0)) {
-        return <p>No categories found</p>;
+        return <p className="text-center mt-4 mb-20">No categories found</p>;
     }
     if (categoriesError) return <p>Can&#39;t load categories</p>;
     if (!blogsLoading && (!blogs || blogs.length === 0)) {
@@ -27,9 +27,9 @@ function LatestBlogSection() {
     console.log(categories, blogs, filteredBlogs);
     return (
         <div className="max-w-[var(--max-width)] justify-center items-center">
-            {categoriesLoading ? <CategorySkeleton style="justify-center mb-6" /> : <CategoriesTabs style="justify-center" categories={categories} selectedCategory={selectedCategory} onCategorySelect={handleCategoryClick} />}
+            {categoriesLoading & blogsLoading ? <CategorySkeleton style="justify-center mb-4" /> : <CategoriesTabs style="justify-center" categories={categories} selectedCategory={selectedCategory} onCategorySelect={handleCategoryClick} />}
             <div className="flex flex-wrap gap-4 justify-center items-center">
-            {blogsLoading ? <CategorySkeleton style="justify-center " /> : filteredBlogs?.length > 0 ? (
+            {blogsLoading & blogsLoading ? <CategorySkeleton style="justify-center " /> : filteredBlogs?.length > 0 ? (
                 filteredBlogs.map((blog, index) => (
                     <BlogCard 
                         key={index} 
@@ -51,7 +51,7 @@ function LatestBlogSection() {
                 <p>No blogs found</p>
             )}
             </div>
-            <div className="flex items-center justify-center mt-10 mb-10">
+            <div className="flex items-center justify-center mt-10 mb-20">
         <ButtonLink href="/blogs" className="px-6 py-2 bg-[var(--bg-white)] text-[var(--black-text)] rounded-lg hover:bg-[var(--bg-black)] hover:text-[var(--white-text)] border border-[var(--white-border)] transition-all duration-300">
           View All Blogs
         </ButtonLink>

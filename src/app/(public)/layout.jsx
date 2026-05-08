@@ -10,10 +10,10 @@ export default function PublicLayout({ children }) {
   return (
     <div className="min-h-screen relative ">
       {/* 🌌 Background Grids */}
-      <div className="hidden dark:block gradient-top-left fixed top-0 left-0 w-[51.5%] h-[51vh] z-[-1] outline-0 border-none " />
-      <div className="hidden dark:block gradient-bottom-left fixed top-1/2 left-0 w-[51.5%] h-[50vh] z-[-1] outline-0 border-none" />
-      <div className="hidden dark:block gradient-top-right fixed top-0 left-1/2 w-[51.5%] h-[51vh] z-[-1] outline-0 border-none" />
-      <div className="hidden dark:block gradient-bottom-right fixed top-1/2 left-1/2 w-[51.5%] h-[50vh] z-[-1] outline-0 border-none" />
+      <div className=" bg-gradient-top-left fixed top-0 left-0 w-[51.5%] h-[51vh] z-[-1] outline-0 border-none " />
+      <div className="bg-gradient-bottom-left fixed top-1/2 left-0 w-[51.5%] h-[50vh] z-[-1] outline-0 border-none" />
+      <div className="bg-gradient-top-right fixed top-0 left-1/2 w-[51.5%] h-[51vh] z-[-1] outline-0 border-none" />
+      <div className=" bg-gradient-bottom-right fixed top-1/2 left-1/2 w-[51.5%] h-[50vh] z-[-1] outline-0 border-none" />
 
       {/* ✨ Decorative Stars */}
       <div className="fixed inset-8">
@@ -45,7 +45,7 @@ export default function PublicLayout({ children }) {
         <div className="star bottom-[85%] left-[30%]" />
         <div className="star bottom-[95%] left-[75%]" />
       </div>
-      <div className="w-full h-[100vh] fixed" >
+      <div className="w-full h-[100vh] fixed z-[-1]"  >
         <LightRays
           raysOrigin="top-center"
           raysColor={resolvedTheme === 'dark' ? '#fff' : '#00ffff'}
@@ -56,10 +56,9 @@ export default function PublicLayout({ children }) {
           mouseInfluence={0.1}
           noiseAmount={0.1}
           distortion={0.05}
-          className=" hidden dark:block  "
+          className=" hidden dark:block  z-[-1]"
         />
       </div>
-
       <PublicNavbar />
       <main className="pt-12 relative z-10">{children}</main>
       <PublicFooter />
