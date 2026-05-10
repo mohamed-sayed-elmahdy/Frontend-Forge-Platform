@@ -15,9 +15,12 @@ export default function BlogsMainPage() {
   const [sortBy, setSortBy] = useState("Newest");
 
 
+
   const handleCategoryClick = (category) => {
     if (category !== selectedCategory) setSelectedCategory(category);
   };
+
+
 
   return (
     <div className="max-w-[1480px] mx-auto mt-20 mb-36 px-4">
