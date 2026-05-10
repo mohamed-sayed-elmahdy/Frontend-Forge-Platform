@@ -5,7 +5,7 @@ export default function CategoriesTabs({categories, selectedCategory, onCategory
   let locale = useLocale();
 
   return (
-    <div role="tablist" aria-label="Blog category filters" className={`flex flex-wrap ${style} gap-3 mb-6`}>
+    <div role="tablist" aria-label="Blog category filters" className={`flex flex-wrap items-center ${style} gap-3`}>
       {categories?.length > 0 && categories.map((category) => (
         <button
           key={category["en"]} 

@@ -27,37 +27,37 @@ function LatestBlogSection() {
     console.log(categories, blogs, filteredBlogs);
     return (
         <div className="max-w-[var(--max-width)] justify-center items-center">
-            {categoriesLoading & blogsLoading ? <CategorySkeleton style="justify-center mb-4" /> : <CategoriesTabs style="justify-center" categories={categories} selectedCategory={selectedCategory} onCategorySelect={handleCategoryClick} />}
+            {categoriesLoading & blogsLoading ? <CategorySkeleton style="justify-center mb-4" /> : <CategoriesTabs style="justify-center mb-6" categories={categories} selectedCategory={selectedCategory} onCategorySelect={handleCategoryClick} />}
             <div className="flex flex-wrap gap-4 justify-center items-center">
-            {blogsLoading ? <CategorySkeleton style="justify-center " /> : filteredBlogs?.length > 0 ? (
-                filteredBlogs.map((blog, index) => (
-                    <BlogCard 
-                        key={index} 
-                        id={blog._id}
-                        title={blog.title}
-                        content={blog.content}
-                        createdAt={blog.createdAt}
-                        description={blog.description}
-                        category={blog.category}
-                        image={blog.image}
-                        authorName={blog.authorName}
-                        authorImage={blog.authorImage}
-                        likes={blog.likes}
-                        pinned={blog.pinned} 
-                        path={`/dashboard/blogs/${blog._id}`}
+                {blogsLoading ? <CategorySkeleton style="justify-center " /> : filteredBlogs?.length > 0 ? (
+                    filteredBlogs.map((blog, index) => (
+                        <BlogCard
+                            key={index}
+                            id={blog._id}
+                            title={blog.title}
+                            content={blog.content}
+                            createdAt={blog.createdAt}
+                            description={blog.description}
+                            category={blog.category}
+                            image={blog.image}
+                            authorName={blog.authorName}
+                            authorImage={blog.authorImage}
+                            likes={blog.likes}
+                            pinned={blog.pinned}
+                            path={`/dashboard/blogs/${blog._id}`}
                         />
-                ))
-            ) : (
-                <p className="text-center mt-4 mb-20">No blogs found</p>
-            )}
+                    ))
+                ) : (
+                    <p className="text-center mt-4 mb-20">No blogs found</p>
+                )}
             </div>
             <div className="flex items-center justify-center mt-10 mb-20">
-        <ButtonLink href="/blogs" className="px-6 py-2 bg-[var(--bg-white)] text-[var(--black-text)] rounded-lg hover:bg-[var(--bg-black)] hover:text-[var(--white-text)] border border-[var(--white-border)] transition-all duration-300">
-          View All Blogs
-        </ButtonLink>
-      </div>
+                <ButtonLink href="/blogs" className="px-6 py-2 bg-[var(--bg-white)] text-[var(--black-text)] rounded-lg hover:bg-[var(--bg-black)] hover:text-[var(--white-text)] border border-[var(--white-border)] transition-all duration-300">
+                    View All Blogs
+                </ButtonLink>
+            </div>
         </div>
-  );
+    );
 }
 
 export default LatestBlogSection;
