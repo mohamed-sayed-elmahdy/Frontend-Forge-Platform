@@ -74,7 +74,7 @@ function PublicNavbar() {
         
           {/* Sign In Button */}
           <ButtonLink
-            href="/signIn"
+            href="/signin"
             className="hidden md:flex justify-center items-center 
            gap-2 bg-transparent border-[var(--border-blur)]
            hover:bg-[var(--btn-bg-hover)] hover:border-[var(--btn-border-hover)] 
@@ -119,7 +119,7 @@ function PublicNavbar() {
         </button>
         <NavLinks onClick={toggleMenu} />
         <ButtonLink
-          href="/signIn"
+          href="/signin"
           className="flex md:hidden justify-center items-center 
            gap-2 bg-transparent border-[var(--btn-border)] 
            hover:bg-[var(--btn-bg-hover)] hover:border-[var(--btn-border-hover)] 
