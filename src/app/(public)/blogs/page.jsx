@@ -5,7 +5,7 @@ import CategoriesTabs from "@/components/blog/CategoriesTabs";
 import CategorySkeleton from "@/components/skeleton/blogsSkeleton/CategorySkeleton";
 import { useFetchCategories } from "@/hooks/useFetchCategories";
 import { useFetchBlogs } from "@/hooks/useFetchBlogs";
-
+import BlogCardSkeleton from "@/components/skeleton/blogsSkeleton/BlogCardSkeleton";
 
 const sortOptions = ["Newest", "Oldest", "A-Z", "Z-A"];
 
@@ -49,13 +49,13 @@ export default function BlogsMainPage() {
 
 
   return (
-    <div className="max-w-[1480px] mx-auto mt-20 mb-36 px-4">
+    <div className="max-w-[1480px] mx-auto mt-20 mb-36">
       <h1 className="text-5xl font-bold text-center text-[var(--text)] mb-10">
         All Blog Posts
       </h1>
       <div className="flex items-center justify-center gap-6 mb-6">
         {/* Category Tabs */}
-        {categoriesLoading || blogsLoading ? <CategorySkeleton style="justify-center mb-4" /> : <CategoriesTabs
+        {categoriesLoading || blogsLoading ? <CategorySkeleton style="justify-center" /> : <CategoriesTabs
           categories={categories}
           selectedCategory={selectedCategory}
           onCategorySelect={handleCategoryClick}
@@ -80,9 +80,6 @@ export default function BlogsMainPage() {
 
       </div>
 
-
-
-
       {/* Blog Cards */}
       <div className="flex flex-wrap gap-6 justify-center">
 
@@ -93,7 +90,16 @@ export default function BlogsMainPage() {
         )}
 
         {(categoriesLoading || blogsLoading) && (
-          <CategorySkeleton style="justify-start" />
+          <div className="flex items-center justify-center flex-wrap  gap-6 w-full">
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+             <BlogCardSkeleton />
+            <BlogCardSkeleton />
+          </div>
         )}
 
         {!categoriesError &&
@@ -111,7 +117,7 @@ export default function BlogsMainPage() {
           !categoriesLoading &&
           !blogsLoading &&
           filteredBlogs.length > 0 &&
-          filteredBlogs.map((blog) => (
+          filteredBlogs.map((blog, index) => (
             <BlogCard
               key={blog._id}
               id={blog._id}
@@ -126,6 +132,7 @@ export default function BlogsMainPage() {
               authorImage={blog.authorImage}
               likes={blog.likes}
               pinned={blog.pinned}
+              priority={index === 0}
             />
           ))}
       </div>
@@ -133,12 +140,3 @@ export default function BlogsMainPage() {
   );
 }
 
-// import React from 'react'
-
-// function BlogsPage() {
-//   return (
-//     <div>page</div>
-//   )
-// }
-
-// export default BlogsPage;

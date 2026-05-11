@@ -6,6 +6,7 @@ import { useFetchCategories } from "@/hooks/useFetchCategories";
 import { useFetchBlogs } from "@/hooks/useFetchBlogs";
 import { useState, useCallback } from "react";
 import ButtonLink from "@/components/ui/ButtonLink";
+import BlogCardSkeleton from "@/components/skeleton/blogsSkeleton/BlogCardSkeleton";
 
 function LatestBlogSection() {
     const { data: categories, isLoading: categoriesLoading, error: categoriesError } = useFetchCategories();
@@ -27,9 +28,15 @@ function LatestBlogSection() {
     console.log(categories, blogs, filteredBlogs);
     return (
         <div className="max-w-[var(--max-width)] justify-center items-center">
-            {categoriesLoading & blogsLoading ? <CategorySkeleton style="justify-center mb-4" /> : <CategoriesTabs style="justify-center mb-6" categories={categories} selectedCategory={selectedCategory} onCategorySelect={handleCategoryClick} />}
+            {categoriesLoading || blogsLoading ? <CategorySkeleton style="justify-center mb-4" /> : <CategoriesTabs style="justify-center mb-6" categories={categories} selectedCategory={selectedCategory} onCategorySelect={handleCategoryClick} />}
             <div className="flex flex-wrap gap-4 justify-center items-center">
-                {blogsLoading ? <CategorySkeleton style="justify-center " /> : filteredBlogs?.length > 0 ? (
+                {blogsLoading ? 
+                <div className="w-full flex flex-wrap gap-4 justify-center items-center">
+                    <BlogCardSkeleton /> 
+                    <BlogCardSkeleton />
+                    <BlogCardSkeleton />
+                    <BlogCardSkeleton />
+                    </div> : filteredBlogs?.length > 0 ? (
                     filteredBlogs.map((blog, index) => (
                         <BlogCard
                             key={index}

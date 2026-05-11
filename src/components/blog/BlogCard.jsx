@@ -19,6 +19,7 @@ function BlogCard({
   likes,
   pinned,
   path,
+  priority,
 }) {
 
   const locale = useLocale();
@@ -99,6 +100,7 @@ function BlogCard({
           alt={`Image for ${title[locale]}`}
           width={800}
           height={600}
+          priority={priority}
           className="rounded-t-2xl w-full object-cover max-h-[280px]"
         />
         <div className="flex items-center justify-between ps-2 pe-3 mt-4">
@@ -110,7 +112,7 @@ function BlogCard({
           </span>
         </div>
         <div className="py-2 px-2">
-          <h3 className="font-medium text-lg mb-2 tracking-tight text-[var(--text)]"
+          <h3 className="font-medium text-lg  tracking-tight text-[var(--text)]"
             aria-label={`Blog title: ${title[locale]}`}
           >
             {title[locale].slice(0, 35) + "..."}

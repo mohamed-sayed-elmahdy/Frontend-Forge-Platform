@@ -1,11 +1,10 @@
+import BlogCardSkeleton from "@/components/skeleton/blogsSkeleton/BlogCardSkeleton";
 
 
 export default function page() {
     return (
-        <div>
-            <div className='fixed top-14 right-2 flex flex-col items-end'>
-          
-            </div>
+        <div className='flex items-center justify-center mt-10'>
+            <BlogCardSkeleton />
         </div>
     )
 }
