@@ -116,7 +116,7 @@ function BlogCard({
             {title[locale].slice(0, 35) + "..."}
           </h3>
           <p className="mb-2 mt-auto text-sm tracking-tight text-[var(--text-lowMuted)]">
-            {content[locale].slice(0, 50) + "..."}
+            {content[locale]?.slice(0, 50) + "..."}
           </p>
         </div>
       </Link>

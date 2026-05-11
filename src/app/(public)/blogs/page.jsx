@@ -6,15 +6,41 @@ import CategorySkeleton from "@/components/skeleton/blogsSkeleton/CategorySkelet
 import { useFetchCategories } from "@/hooks/useFetchCategories";
 import { useFetchBlogs } from "@/hooks/useFetchBlogs";
 
+
 const sortOptions = ["Newest", "Oldest", "A-Z", "Z-A"];
 
 export default function BlogsMainPage() {
-  const { data: categories, isLoading: categoriesLoading, error: categoriesError } = useFetchCategories();
-  const { data: blogs, isLoading: blogsLoading, error: blogsError } = useFetchBlogs();
+  const { data: categories = [], isLoading: categoriesLoading, error: categoriesError } = useFetchCategories();
+  const { data: blogs = [], isLoading: blogsLoading, error: blogsError } = useFetchBlogs();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("Newest");
+  const filteredBlogs = useMemo(() => {
+    if (categoriesError || blogsError || categoriesLoading || blogsLoading) {
+      return [];
+    }
+    let filtered =
+      selectedCategory === "All"
+        ? [...blogs]
+        : blogs.filter((blog) => blog.category["en"] === selectedCategory);
 
-
+    switch (sortBy) {
+      case "Newest":
+        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+      case "Oldest":
+        filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+        break;
+      case "A-Z":
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "Z-A":
+        filtered.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      default:
+        break;
+    }
+    return filtered;
+  }, [selectedCategory, sortBy, blogs, categoriesError, blogsError, categoriesLoading, blogsLoading]);
 
   const handleCategoryClick = (category) => {
     if (category !== selectedCategory) setSelectedCategory(category);
@@ -27,59 +53,82 @@ export default function BlogsMainPage() {
       <h1 className="text-5xl font-bold text-center text-[var(--text)] mb-10">
         All Blog Posts
       </h1>
-      <div className="flex items-center justify-center gap-6">
-          {/* Category Tabs */}
-           {categoriesLoading || blogsLoading ? <CategorySkeleton style="justify-center mb-4" /> :  <CategoriesTabs
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategorySelect={handleCategoryClick}
-        style="justify-center"
-      /> }
-     
+      <div className="flex items-center justify-center gap-6 mb-6">
+        {/* Category Tabs */}
+        {categoriesLoading || blogsLoading ? <CategorySkeleton style="justify-center mb-4" /> : <CategoriesTabs
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategorySelect={handleCategoryClick}
+          style="justify-center "
+        />}
 
-      {/* Sort Options */}
-      <div className="flex justify-self-end">
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
-          className="border border-[var(--border-blur)] rounded-lg px-4 py-2 text-[var(--text)] bg-transparent focus:outline-none"
-        >
-          {sortOptions.map((option) => (
-            <option key={option} value={option} className="text-black">
-              Sort by {option}
-            </option>
-          ))}
-        </select>
+
+        {/* Sort Options */}
+        <div className="flex justify-self-end ">
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="border border-[var(--border-blur)] rounded-lg px-4 py-2 text-[var(--text)] bg-transparent focus:outline-none"
+          >
+            {sortOptions.map((option) => (
+              <option key={option} value={option} className="text-black">
+                Sort by {option}
+              </option>
+            ))}
+          </select>
+        </div>
+
       </div>
-      </div>
-      
-      
-     
+
+
+
 
       {/* Blog Cards */}
-      {/* <div className="flex flex-wrap gap-6 justify-center">
-        {filteredBlogs.length > 0 ? (
+      <div className="flex flex-wrap gap-6 justify-center">
+
+        {(categoriesError || blogsError) && (
+          <p className="text-3xl text-red-500 capitalize">
+            Error loading blogs. Please try again later.
+          </p>
+        )}
+
+        {(categoriesLoading || blogsLoading) && (
+          <CategorySkeleton style="justify-start" />
+        )}
+
+        {!categoriesError &&
+          !blogsError &&
+          !categoriesLoading &&
+          !blogsLoading &&
+          filteredBlogs.length === 0 && (
+            <p className="text-3xl text-[var(--text)] capitalize">
+              No blogs found in this category.
+            </p>
+          )}
+
+        {!categoriesError &&
+          !blogsError &&
+          !categoriesLoading &&
+          !blogsLoading &&
+          filteredBlogs.length > 0 &&
           filteredBlogs.map((blog) => (
             <BlogCard
-              key={blog.id}
-              id={blog.id}
+              key={blog._id}
+              id={blog._id}
               title={blog.title}
-              date={blog.publishedAt || blog.createdAt}
-              description={blog.content.slice(0, 95) + "..."}
+              content={blog.content}
+              path={`/blogs/${blog._id}`}
+              createdAt={blog.publishedAt || blog.createdAt}
+              description={blog.content}
               category={blog.category}
               image={blog.image}
-              author={blog.authorName}
-              author_img={blog.author_img}
+              authorName={blog.authorName}
+              authorImage={blog.authorImage}
               likes={blog.likes}
               pinned={blog.pinned}
             />
-          ))
-        ) : (
-          <p className="text-3xl text-[var(--text)] capitalize">
-            No blogs found in this category.
-          </p>
-        )}
-      </div>  */}
+          ))}
+      </div>
     </div>
   );
 }
