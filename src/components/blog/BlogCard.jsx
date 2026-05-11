@@ -100,7 +100,7 @@ function BlogCard({
           alt={`Image for ${title[locale]}`}
           width={800}
           height={600}
-          priority={priority}
+       
           className="rounded-t-2xl w-full object-cover max-h-[280px]"
         />
         <div className="flex items-center justify-between ps-2 pe-3 mt-4">
