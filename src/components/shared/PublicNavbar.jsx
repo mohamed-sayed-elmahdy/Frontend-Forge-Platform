@@ -49,7 +49,7 @@ function PublicNavbar() {
       >
         <Link href="/" className="flex items-center" aria-label="Site Logo">
           <span className="text-[var(--text)] text-lg md:text-3xl font-extrabold">
-            My Blog
+             Frontend Forge
           </span>
         </Link>
 
