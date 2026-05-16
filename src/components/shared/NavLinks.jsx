@@ -20,9 +20,9 @@ function NavLinks({ onClick }) {
       <Link
         key={link.name}
         href={link.href}
-        className={`font-semibold transition-all duration-300 text-[var(--text)] 
+        className={`rounded-full  hover:bg-transparent/35 px-4 py-1 font-semibold transition-all duration-300 text-[var(--text)] 
           ${isActive ? "text-[var(--text-active)] hover:text-[var(--text-active)]"
-            : "hover:text-[var(--text-hover)]"
+            : "hover:text-[var(--text)]"
           }`}
         aria-current={isActive ? "page" : undefined}
         onClick={onClick}

@@ -9,7 +9,7 @@ import ButtonLink from "@/components/ui/ButtonLink";
 import NavLinks from "@/components/shared/NavLinks";
 import ThemeSwitch from "@/components/shared/ThemeSwitch";
 import ToggleLocal from "@/components/ui/ToggleLocal";
-
+import Image from "next/image";
 
 function PublicNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -47,13 +47,14 @@ function PublicNavbar() {
        "
         role="navigation"
       >
-        <Link href="/" className="flex items-center" aria-label="Site Logo">
-          <span className="text-[var(--text)] text-lg md:text-3xl font-extrabold">
-             Frontend Forge
-          </span>
+        <Link href="/" className="flex items-center" aria-label="Frontend Forge Logo">
+          {/* <span className="text-[var(--text)] text-lg md:text-3xl font-extrabold">
+            Frontend Forge
+          </span> */}
+          <Image src="/logo3.png" alt="Frontend Forge Logo" width={60} height={40} className="mr-2" />
         </Link>
 
-        <div className="hidden md:flex items-center gap-4 md:gap-6 lg:gap-12 text-[var(--text)]">
+        <div className="hidden md:flex items-center gap-4 md:gap-6 lg:gap-4 text-[var(--text)]">
           <NavLinks onClick={toggleMenu} />
         </div>
 
@@ -68,10 +69,12 @@ function PublicNavbar() {
           >
             <IoSearch className="text-xl" />
           </button>
-            <ThemeSwitch />
-        
+          <ThemeSwitch />
+
           <ToggleLocal />
-        
+          <Link href="/login" className="text-[var(--text)] font-medium hover:text-[var(--text-active)] transition-all divide-purple-300" onClick={toggleMenu}>
+            Login
+          </Link>
           {/* Sign In Button */}
           <ButtonLink
             href="/signin"
@@ -118,16 +121,22 @@ function PublicNavbar() {
           <IoIosCloseCircle className="text-2xl" />
         </button>
         <NavLinks onClick={toggleMenu} />
-        <ButtonLink
-          href="/signin"
-          className="flex md:hidden justify-center items-center 
+
+        <div className="flex flex-col gap-3 items-center justify-center">
+          <Link href="/login" className="text-[var(--text)] font-medium " onClick={toggleMenu}>
+            Login
+          </Link>
+          <ButtonLink
+            href="/signin"
+            className="flex md:hidden justify-center items-center 
            gap-2 bg-transparent border-[var(--btn-border)] 
            hover:bg-[var(--btn-bg-hover)] hover:border-[var(--btn-border-hover)] 
            backdrop-blur-3xl rounded-3xl border 
            text-[var(--text)] font-semibold   py-2 px-6 transition-all duration-300"
-        >
-          Sign In <CiLocationArrow1 className="text-xl" />
-        </ButtonLink>
+          >
+            Sign In <CiLocationArrow1 className="text-xl" />
+          </ButtonLink>
+        </div>
       </div>
     </div>
   );
