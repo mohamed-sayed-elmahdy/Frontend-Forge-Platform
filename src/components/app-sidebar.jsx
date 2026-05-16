@@ -36,17 +36,17 @@ const data = {
   navMain: [
     {
       title: "Interviews",
-      url: "/dashboard/Interviews",
+      url: "/dashboard/interviews",
       icon: BookOpen,
       items: [
         {
           title: "React Interviews",
-          url: "/dashboard/Interviews/reactInterviews",
+          url: "/dashboard/interviews/reactInterviews",
         },
         
         {
           title: "JS Interviews",
-          url: "/dashboard/Interviews/jsInterviews",
+          url: "/dashboard/interviews/jsInterviews",
         },
       ],
     },
