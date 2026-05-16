@@ -1,6 +1,7 @@
 "use client";
 import CategoriesTabs from "@/components/blog/CategoriesTabs";
 import BlogCard from "@/components/blog/BlogCard";
+import BlogCardSkeletonGroup from "@/components/skeleton/blogsSkeleton/BlogCardSkeletonGroup";
 import CategorySkeleton from "@/components/skeleton/blogsSkeleton/CategorySkeleton";
 import { useFetchCategories } from "@/hooks/useFetchCategories";
 import { useFetchBlogs } from "@/hooks/useFetchBlogs";
@@ -35,7 +36,7 @@ function Blogs() {
                 )}
             </div>
             <div className="flex flex-wrap gap-4">
-            {blogsLoading ? <CategorySkeleton style="justify-start" /> : filteredBlogs?.length > 0 ? (
+            {blogsLoading ? <BlogCardSkeletonGroup style="justify-start" /> : filteredBlogs?.length > 0 ? (
                 filteredBlogs.map((blog, index) => (
                     <BlogCard 
                         key={index} 

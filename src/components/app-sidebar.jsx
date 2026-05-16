@@ -34,25 +34,25 @@ const data = {
     avatar: "https://ui.shadcn.com/avatars/shadcn.jpg",
   },
   navMain: [
-        {
+    {
       title: "Interviews",
-      url: "/dashboard/jsInterviews",
+      url: "/dashboard/Interviews",
       icon: BookOpen,
       items: [
         {
           title: "React Interviews",
-          url: "/dashboard/reactInterviews",
+          url: "/dashboard/Interviews/reactInterviews",
         },
         
         {
           title: "JS Interviews",
-          url: "/dashboard/jsInterviews",
+          url: "/dashboard/Interviews/jsInterviews",
         },
       ],
     },
     {
       title: "Documentation",
-      url: "#",
+      url: "/dashboard/documentation",
       icon: BookOpen,
       items: [
         {
@@ -75,7 +75,7 @@ const data = {
     },
     {
       title: "Settings",
-      url: "#",
+      url: "/dashboard/settings",
       icon: Settings2,
       items: [
         {
