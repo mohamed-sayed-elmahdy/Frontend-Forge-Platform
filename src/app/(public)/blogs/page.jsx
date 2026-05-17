@@ -84,7 +84,7 @@ export default function BlogsMainPage() {
       <div className="flex flex-wrap gap-6 justify-center">
 
         {(categoriesError || blogsError) && (
-          <p className="text-3xl text-red-500 capitalize">
+          <p className="text-3xl text-[var(--text)] capitalize">
             Error loading blogs. Please try again later.
           </p>
         )}

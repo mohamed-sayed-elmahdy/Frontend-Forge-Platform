@@ -15,7 +15,7 @@ export async function GET(request) {
 
 export async function POST(request) {
     try {
-        await connectDB();
+        await connectDB(); 
         // verify user token(temporary object)
         const data = await request.formData();
         // const decoded = await verifyToken(req);
