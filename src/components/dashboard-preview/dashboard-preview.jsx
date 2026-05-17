@@ -93,21 +93,20 @@ export default function DashboardPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="
-relative overflow-hidden rounded-[32px]
-border-[12px] border-white/10
-bg-[#050505]/95
-shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_80px_rgba(0,0,0,0.55)]
-backdrop-blur-2xl
-before:pointer-events-none
-before:absolute
-before:inset-0
-before:rounded-[32px]
-before:border
-before:border-white/[0.06]
-before:bg-white/[0.015]
-before:[mask-image:linear-gradient(to_bottom,white,transparent)]
-"
+          className="relative overflow-hidden rounded-[50px]
+          border-[12px] border-white/10
+        bg-[#050505]/95
+          shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_80px_rgba(0,0,0,0.55)]
+          backdrop-blur-2xl
+          before:pointer-events-none
+          before:absolute
+          before:inset-0
+          before:rounded-[32px]
+          before:border
+        before:border-white/[0.06]
+        before:bg-white/[0.015]
+          before:[mask-image:linear-gradient(to_bottom,white,transparent)]
+          "
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.04),transparent_30%)]" />
 
@@ -144,8 +143,8 @@ before:[mask-image:linear-gradient(to_bottom,white,transparent)]
                           key={item.label}
                           whileHover={{ x: 2 }}
                           className={`group flex w-full items-center justify-between rounded-xl px-3 py-3 text-left transition-all duration-300 ${index === 0
-                              ? "bg-white/[0.04] text-white"
-                              : "text-zinc-400 hover:bg-white/[0.03] hover:text-white"
+                            ? "bg-white/[0.04] text-white"
+                            : "text-zinc-400 hover:bg-white/[0.03] hover:text-white"
                             }`}
                         >
                           <div className="flex items-center gap-3">
