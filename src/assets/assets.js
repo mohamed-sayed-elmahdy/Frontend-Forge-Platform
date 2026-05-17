@@ -30,7 +30,6 @@ export const assets = {
   googleplus_icon,
   twitter_icon,
   profile_icon,
-  logo,
   arrow,
   logo_light,
   blog_icon,
