@@ -7,6 +7,14 @@ import { useTranslations } from 'next-intl';
 export default function HeroSection() {
   const [secondLineVisible, setSecondLineVisible] = useState(false);
   const t = useTranslations("home");
+//  const checkRegistration = () => {
+//     const isRegistered = localStorage.getItem("isRegistered");
+//     if (isRegistered) {
+//       window.location.href = "/dashboard";
+//     } else {
+//       window.location.href = "/login";
+//     }
+//   }
 
   const titleClass = "text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--text)] leading-tight";
 
@@ -47,7 +55,8 @@ export default function HeroSection() {
               {t("hero-description")}
             </p>
             <ButtonLink
-              href={"#"}
+              href={"/dashboard"}
+              // onClick={checkRegistration}
               className="block w-fit bg-[var(--bg-blur)] hover:bg-[var(--btn-bg-hover)] border-[var(--border-blur)] hover:border-[var(--btn-border-hover)] backdrop-blur-3xl border text-[var(--text)] px-8 py-3  shadow-md shadow-white/10 rounded-lg font-semibold transition-all duration-300"
             >
               Get Started
