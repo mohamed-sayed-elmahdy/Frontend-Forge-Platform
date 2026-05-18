@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 
 import { useTranslations } from "next-intl";
 
-export default function AdminBreadcrumbs() {
+export default function UserBreadcrumbs() {
     const pathname = usePathname();
     const t = useTranslations();
 
@@ -28,8 +28,8 @@ export default function AdminBreadcrumbs() {
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
-                        {breadcrumbSegments.length > 0 ? <BreadcrumbLink href="/admin/dashboard">{t('admin.adminBreadcrumbs.adminDashboard')}</BreadcrumbLink>
-                            : <BreadcrumbPage>{t('admin.adminBreadcrumbs.adminDashboard')}</BreadcrumbPage>}
+                        {breadcrumbSegments.length > 0 ? <BreadcrumbLink href="/dashboard">{t('adminBreadcrumbs.adminDashboard')}</BreadcrumbLink>
+                            : <BreadcrumbPage>{t('adminBreadcrumbs.adminDashboard')}</BreadcrumbPage>}
                     </BreadcrumbItem>
                     {breadcrumbSegments ? breadcrumbSegments.map((segment, index) => (
                         <Fragment key={index}>

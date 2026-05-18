@@ -1,6 +1,6 @@
 
 "use client"
-
+import Image from "next/image"
 import { motion } from "motion/react"
 import {
   BookOpen,
@@ -37,7 +37,7 @@ const sidebarItems = [
   { label: "Bookmarks", icon: Flame, color: "#FB7185" },
   { label: "Blogs", icon: BookOpen, color: "#0EA5E9" },
   { label: "Documentation", icon: BookOpen, color: "#A855F7" },
-  { label: "AI Assistant", icon: BrainCircuit, color: "#A855F7" },
+  { label: "AI Assistant", icon: BrainCircuit, color: "#01558F" },
   { label: "Settings", icon: Settings, color: "#9CA3AF" },
 ]
 
@@ -171,8 +171,10 @@ export default function DashboardPreview() {
 
                 <div className="border-t border-white/5 p-4">
                   <div className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.03] p-3">
-                    <img
-                      src="https://i.pravatar.cc/100"
+                    <Image
+                      width={40}
+                      height={40}
+                      src="/MohamedSayed.jpg"
                       alt="avatar"
                       className="size-10 rounded-xl object-cover"
                     />

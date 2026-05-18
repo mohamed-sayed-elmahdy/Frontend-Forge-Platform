@@ -3,7 +3,7 @@
   "home": {
     "siteTitle": "StoryCraft",
     "hero-description": "Unlock the full story of any person or company on your market to gain access to more customers and convert them with more confidence."
-},
+  },
   "metadata": {
     "title": "StoryCraft",
     "description": "Effortlessly create, customize, and manage your blogs with our advanced Blog App and Admin Panel.",
@@ -53,16 +53,17 @@
       "shortcut": "/favicon-16x16.png",
       "apple": "/apple-touch-icon.png"
     }
-  }
-  , "adminBreadcrumbs": {
-    "adminDashboard": "Admin Dashboard",
-    "home": "Home",
-    "overview": "Overview",
-    "blogList": "Blog List",
-    "addBlog": "Add Blog",
-    "editBlog": "Edit Blog",
-    "blogsCategories": "Blog Categories",
-    "blogSubscriptions": "Blog Subscriptions"
+  },
+  "admin": {
+    "adminBreadcrumbs": {
+      "adminDashboard": "Admin Dashboard",
+      "home": "Home",
+      "overview": "Overview",
+      "blogList": "Blog List",
+      "addBlog": "Add Blog",
+      "editBlog": "Edit Blog",
+      "blogsCategories": "Blog Categories",
+      "blogSubscriptions": "Blog Subscriptions"
+    }
   }
 }
-  

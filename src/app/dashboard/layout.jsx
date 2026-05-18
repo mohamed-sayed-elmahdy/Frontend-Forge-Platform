@@ -1,12 +1,4 @@
 import { AppSidebar } from '@/components/app-sidebar'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
 import { Separator } from '@/components/ui/separator';
 import {
   SidebarInset,
@@ -15,6 +7,7 @@ import {
 } from '@/components/ui/sidebar'
 import ThemeSwitch from '@/components/shared/ThemeSwitch';
 import ToggleLocal from '@/components/ui/ToggleLocal';
+import UserBreadcrumbs from '@/components/dashboard/UserBreadcrumbs';
 
 export default function UserDashboardLayout({ children }) {
   return (
@@ -28,19 +21,7 @@ export default function UserDashboardLayout({ children }) {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                      Dashboard
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage> </BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <UserBreadcrumbs />
           </div>
           <div className='flex items-center gap-4'>
             <ToggleLocal />

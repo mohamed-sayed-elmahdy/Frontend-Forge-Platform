@@ -59,7 +59,7 @@ const data = {
     // =========================
     {
       title: "My Feed",
-      url: "/dashboard/feed",
+      url: "/dashboard",
       icon: LayoutDashboard,
       colorIcon: "#3B82F6",
       items: [

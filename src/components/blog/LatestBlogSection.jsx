@@ -6,7 +6,7 @@ import { useFetchCategories } from "@/hooks/useFetchCategories";
 import { useFetchBlogs } from "@/hooks/useFetchBlogs";
 import { useState, useCallback } from "react";
 import ButtonLink from "@/components/ui/ButtonLink";
-import BlogCardSkeleton from "@/components/skeleton/blogsSkeleton/BlogCardSkeleton";
+import BlogCardSkeletonGroup from "../skeleton/blogsSkeleton/BlogCardSkeletonGroup";
 
 function LatestBlogSection() {
     const { data: categories, isLoading: categoriesLoading, error: categoriesError } = useFetchCategories();
@@ -32,10 +32,7 @@ function LatestBlogSection() {
             <div className="flex flex-wrap gap-4 justify-center items-center">
                 {blogsLoading ? 
                 <div className="w-full flex flex-wrap gap-4 justify-center items-center">
-                    <BlogCardSkeleton /> 
-                    <BlogCardSkeleton />
-                    <BlogCardSkeleton />
-                    <BlogCardSkeleton />
+                    <BlogCardSkeletonGroup />
                     </div> : filteredBlogs?.length > 0 ? (
                     filteredBlogs.map((blog, index) => (
                         <BlogCard
