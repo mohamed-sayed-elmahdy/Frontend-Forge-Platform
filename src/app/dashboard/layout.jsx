@@ -30,10 +30,12 @@ export default function UserDashboardLayout({ children }) {
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0 ov">
-        {children}
-  
+          {children}
+
         </div>
       </SidebarInset>
+      <Analytics />
     </SidebarProvider>
+
   )
 }
