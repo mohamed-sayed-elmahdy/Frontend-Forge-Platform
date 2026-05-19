@@ -19,7 +19,9 @@ export default function AdminBreadcrumbs() {
     const pathSegments = pathname.split('/').filter(segment => segment && segment !== 'admin' && segment !== 'dashboard');
     const breadcrumbSegments = pathSegments.map(segment => ({
         original: segment,
-        formatted: t(`adminBreadcrumbs.${segment}`) || segment.replace(/([A-Z])/g, (m, p, offset) => (offset === 0 ? m : ' ' + m))
+        formatted: t.has(`admin.adminBreadcrumbs.${segment}`)
+            ? t(`admin.adminBreadcrumbs.${segment}`)
+            : segment.replace(/-/g, " ")
     }));
 
 

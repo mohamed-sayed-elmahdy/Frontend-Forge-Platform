@@ -1,13 +1,13 @@
 
-import questions from "@/../demo/react.json";
+import questions from "@/../demo/js.json";
 import TheoreticalCard from "@/components/interviews/TheoreticalCard";
 
 
-export default function interviews() {
+export default function javascript() {
 
   return (
     <div className="px-4 sm:px-6 lg:px-10 py-6 ">
-      <h1 className="text-2xl font-bold mb-4">Interviews Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-4">JavaScript Interviews</h1>
       { questions.length > 0 &&  questions.map((question) => (
            <TheoreticalCard
            key={question.id}

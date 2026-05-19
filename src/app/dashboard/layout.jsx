@@ -1,4 +1,4 @@
-import { AppSidebar } from '@/components/app-sidebar'
+import { AppSidebar } from '@/components/dashboard/app-sidebar'
 import { Separator } from '@/components/ui/separator';
 import {
   SidebarInset,
@@ -8,7 +8,7 @@ import {
 import ThemeSwitch from '@/components/shared/ThemeSwitch';
 import ToggleLocal from '@/components/ui/ToggleLocal';
 import UserBreadcrumbs from '@/components/dashboard/UserBreadcrumbs';
-
+import { Analytics } from '@vercel/analytics/react';
 export default function UserDashboardLayout({ children }) {
   return (
     <SidebarProvider>
