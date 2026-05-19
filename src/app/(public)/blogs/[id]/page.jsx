@@ -14,7 +14,7 @@ export default function BlogPostPage({ params }) {
   const [error, setError] = useState("");
   const idOrSlug =  use(params)?.id;
 
-  const fetchBlogData = async () => {
+  const fetchBlogData = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
@@ -32,11 +32,11 @@ export default function BlogPostPage({ params }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [idOrSlug]);
 
   useEffect(() => {
     fetchBlogData();
-  }, [idOrSlug]);
+  }, [idOrSlug, fetchBlogData]);
 
   if (loading) {
     return <Loading size="large" />;
