@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { FileText, Users, Bot, BarChart3 } from "lucide-react";
 
