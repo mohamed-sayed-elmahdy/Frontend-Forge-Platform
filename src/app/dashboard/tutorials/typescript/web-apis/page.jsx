@@ -2,14 +2,14 @@
 import { Code2, Star, Clock } from 'lucide-react';
 import Link from 'next/link';
 
-export default function TypeScriptTutorialsPage() {
+export default function WebAPIsTutorialsPage() {
   const tutorials = [
-    { id: 1, title: 'TypeScript Fundamentals', duration: '2h', rating: 4.9, difficulty: 'Beginner' },
-    { id: 2, title: 'Advanced Types & Generics', duration: '2h 45m', rating: 4.8, difficulty: 'Advanced' },
-    { id: 3, title: 'Type Safety Patterns', duration: '1h 45m', rating: 4.7, difficulty: 'Intermediate' },
-    { id: 4, title: 'TypeScript with React', duration: '2h 30m', rating: 4.9, difficulty: 'Intermediate' },
-    { id: 5, title: 'Decorators & Metadata', duration: '2h', rating: 4.6, difficulty: 'Advanced' },
-    { id: 6, title: 'Testing TypeScript', duration: '1h 30m', rating: 4.8, difficulty: 'Intermediate' },
+    { id: 1, title: 'DOM Manipulation Basics', duration: '1h 30m', difficulty: 'Beginner', rating: 4.7 },
+    { id: 2, title: 'Fetch API & Async Await', duration: '2h', difficulty: 'Intermediate', rating: 4.9 },
+    { id: 3, title: 'Web Storage & LocalStorage', duration: '1h 15m', difficulty: 'Beginner', rating: 4.6 },
+    { id: 4, title: 'Service Workers & PWA', duration: '2h 45m', difficulty: 'Advanced', rating: 4.8 },
+    { id: 5, title: 'WebSockets Real-time', duration: '2h', difficulty: 'Intermediate', rating: 4.9 },
+    { id: 6, title: 'Geolocation & Sensors', duration: '1h 45m', difficulty: 'Intermediate', rating: 4.5 },
   ];
 
   return (
@@ -18,14 +18,14 @@ export default function TypeScriptTutorialsPage() {
         ← Back to Tutorials
       </Link>
       <div>
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">TypeScript Tutorials</h1>
-        <p className="text-gray-600 dark:text-gray-400 mt-2">From basics to advanced TypeScript patterns and techniques</p>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Web APIs Tutorials</h1>
+        <p className="text-gray-600 dark:text-gray-400 mt-2">Master modern Web APIs for building powerful browser applications</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {tutorials.map((t) => (
           <div key={t.id} className="bg-white dark:bg-gray-800 rounded-xl p-6 hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
             <div className="flex items-start justify-between mb-4">
-              <Code2 className="w-6 h-6 text-blue-600" />
+              <Code2 className="w-6 h-6 text-purple-600" />
               <span className={`text-xs px-3 py-1 rounded-full ${
                 t.difficulty === 'Beginner' ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200' :
                 t.difficulty === 'Intermediate' ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200' :
