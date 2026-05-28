@@ -512,7 +512,7 @@ export function AppSidebar({
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="/">
+              <Link href="/">
                 <div
                   className="flex  items-center justify-center ps-4">
                   <Image src="/logo3.png" alt="Frontend Forge Logo" width={50} height={40}  />
@@ -522,7 +522,7 @@ export function AppSidebar({
                   <span className="truncate font-semibold">FrontEnd</span>
                   <span className="truncate text-xs">Forge</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
 
