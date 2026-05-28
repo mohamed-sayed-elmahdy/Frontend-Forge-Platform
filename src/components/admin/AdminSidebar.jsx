@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image"
+import Link from "next/link"
 import { FaBloggerB } from "react-icons/fa";
 import { TbMapQuestion } from "react-icons/tb";
 
@@ -116,7 +117,7 @@ export default function AdminSidebar({
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="/admin/dashboard">
+              <Link href="/admin/dashboard">
                 <div
                   className="flex items-center justify-center ps-4">
                   <Image src="/logo3.png" alt="Frontend Forge Logo" width={50} height={40}  />
@@ -125,7 +126,7 @@ export default function AdminSidebar({
                   <span className="truncate font-semibold">FrontEnd</span>
                   <span className="truncate text-xs">Forge</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           
