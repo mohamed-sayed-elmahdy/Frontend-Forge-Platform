@@ -115,14 +115,14 @@ export default function DashboardPreview() {
             <aside className="w-[240px] shrink-0 border-r border-white/5 bg-white/[0.02]">
               <div className="flex h-full flex-col">
                 <div className="border-b border-white/5 px-5 py-5">
-                  <div className="flex items-center gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-xl bg-[#2563EB] text-white shadow-lg shadow-blue-500/20">
-                      <Sparkles size={18} />
+                  <div className="flex items-center gap-0">
+                    <div className="flex  items-center justify-center ps-4">
+                           <Image src="/logo3.png" alt="Frontend Forge Logo" width={50} height={40}  />
                     </div>
 
                     <div>
-                      <p className="text-sm font-semibold text-white">Acme Inc</p>
-                      <p className="text-xs text-zinc-500">Enterprise</p>
+                      <p className="text-sm font-semibold text-white">FrontEnd </p>
+                      <p className="text-xs text-zinc-400">Forge</p>
                     </div>
                   </div>
                 </div>

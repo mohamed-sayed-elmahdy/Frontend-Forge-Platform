@@ -1,5 +1,6 @@
 
-import { TrendingUp, BookOpen, Target, Zap, Clock, Award, Flame, Play } from "lucide-react";
+import { TrendingUp, BookOpen, Target, Zap, Award, Flame, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from 'next/link';
 export default function Dashboard() {
   const feedCategories = [
@@ -28,7 +29,7 @@ export default function Dashboard() {
       <section className="space-y-8">
         <div>
           <div className="flex items-center gap-3">
-                 <div>
+            <div>
               <Flame className="w-10 h-10 text-orange-500" />
             </div>
             <div>
@@ -38,7 +39,7 @@ export default function Dashboard() {
               </h1>
               <h1 className="text-3xl font-bold ">Welcome back, Mohamed!</h1>
             </div>
-       
+
           </div>
           <p className="text-gray-600 dark:text-gray-400 mt-2">Personalized learning feed with trending content and your progress</p>
         </div>
@@ -48,11 +49,11 @@ export default function Dashboard() {
             const Icon = category.icon;
             return (
               <Link key={category.name} href={category.path}>
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 hover:shadow-lg transition-shadow h-full">
+                <div className="rounded-xl border bg-card p-6 shadow-sm hover:shadow-md dark:hover:shadow-white/15 transition-all hover:scale-[1.05] hover:bg-muted  duration-300 h-full">
                   <Icon className={`w-8 h-8 ${category.color} mb-4`} />
                   <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">{category.name}</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{category.count} items</p>
-                  <span className="text-blue-600 text-sm font-medium">View Feed →</span>
+                  <span className=" text-sm font-medium">View Feed <ArrowRight className="w-4 h-4 inline ml-1" /></span>
                 </div>
               </Link>
             );
@@ -69,7 +70,7 @@ export default function Dashboard() {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
-            <div key={i} className="rounded-xl border bg-card p-6 shadow-sm hover:shadow-md transition">
+            <div key={i} className="rounded-xl border bg-card p-6 shadow-sm hover:shadow-md dark:hover:shadow-white/15 transition-all hover:scale-[1.05] hover:bg-muted  duration-300">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">{stat.label}</p>

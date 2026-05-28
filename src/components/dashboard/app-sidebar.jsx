@@ -1,6 +1,5 @@
 "use client"
-
-import * as React from "react"
+import Image from "next/image"
 import {
   BookOpen,
   BrainCircuit,
@@ -25,7 +24,7 @@ import {
   Trophy,
   WandSparkles,
   Wrench,
-  Frame,Command
+  Frame, Command
 
 } from "lucide-react"
 
@@ -474,7 +473,7 @@ const data = {
       title: "Support",
       url: "/support",
       icon: LifeBuoy,
-      
+
     },
     {
       title: "Feedback",
@@ -513,14 +512,15 @@ export function AppSidebar({
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <a href="/">
                 <div
-                  className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4" />
+                  className="flex  items-center justify-center ps-4">
+                  <Image src="/logo3.png" alt="Frontend Forge Logo" width={50} height={40}  />
+
                 </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
+                <div className="grid text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">FrontEnd</span>
+                  <span className="truncate text-xs">Forge</span>
                 </div>
               </a>
             </SidebarMenuButton>

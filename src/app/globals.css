@@ -19,7 +19,7 @@
   --bg-white: rgba(255, 255, 255);
   --bg-black: rgba(0, 0, 0);
   --bg-green: #16a34a;
-   --question-codeBg: #292a2c;
+  --question-codeBg: #292a2c;
   --question-textarea: #292a2c;
   --text-green: #4ade80;
   --bg-card: rgba(255, 255, 255, 0.05);
@@ -29,7 +29,11 @@
   --white-border: rgba(255, 255, 255);
   --text-gray-400: #9ca3af;
   --max-width: 1480px;
-
+  
+  /* Scrollbar Colors (Dark Mode) */
+  --scrollbar-track-bg: #3d3d3d;
+  --scrollbar-track-border: #000000;
+  --scrollbar-thumb-bg: #000000d7;
 
   /* Gradient (Dark Mode) */
   --bg-gradient-top-left: linear-gradient(to top left,
@@ -71,8 +75,8 @@
   --bg-white: rgba(0, 0, 0);
   --bg-black: rgba(255, 255, 255);
   --bg-green: #16a34a;
-   --question-codeBg: #e5e7eb;
-   --question-textarea: #e5e7eb;
+  --question-codeBg: #e5e7eb;
+  --question-textarea: #e5e7eb;
   --text-green: #4ade80;
   --bg-card: rgba(255, 255, 255, 0.05);
   --border-soft: rgba(0, 0, 0, 0.1);
@@ -80,16 +84,21 @@
   --white-text: rgba(0, 0, 0);
   --white-border: rgba(0, 0, 0);
   --text-gray-400: #4b5563;
+  
+  /* Scrollbar Colors (Light Mode) */
+  --scrollbar-track-bg: #f3f3f3;
+  --scrollbar-track-border: #d0d0d0;
+  --scrollbar-thumb-bg: #a0a0a0d7;
   --accent-color: #00ffff;
   /*  Light Mode Gradients */
   --bg-gradient-top-left: linear-gradient(to top left,
       #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
   --bg-gradient-bottom-left: linear-gradient(to bottom left,
-         #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
+      #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
   --bg-gradient-top-right: linear-gradient(to top right,
-       #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
+      #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
   --bg-gradient-bottom-right: linear-gradient(to bottom right,
-         #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
+      #ffffff, #ffffff, #f9f9f9, #f3f3f3, #ebebeb, #ebebeb, #e5e5e5, #b9b9b9);
 
   /*  Light Mode Stars */
   --star-color: rgba(0, 0, 0, 0.5);
@@ -247,4 +256,22 @@ html[lang="en"] {
 
 html[lang="ar"] .rtl-flip {
   transform: rotate(180deg);
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: var(--scrollbar-track-bg);
+  border: 1px solid var(--scrollbar-track-border);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+  background-color: var(--scrollbar-thumb-bg);
 }
