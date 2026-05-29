@@ -104,10 +104,18 @@ export default function Dashboard() {
           <div className="rounded-xl border bg-card p-6 shadow-sm">
             <h2 className="text-xl font-bold mb-4">Quick Links</h2>
             <div className="space-y-2">
-              <a href="/dashboard/interviews/react" className="block p-2 text-sm hover:bg-muted/50 rounded transition">Practice React</a>
-              <a href="/dashboard/challenges/medium" className="block p-2 text-sm hover:bg-muted/50 rounded transition">Solve Challenge</a>
-              <a href="/dashboard/mock-interviews/ai" className="block p-2 text-sm hover:bg-muted/50 rounded transition">Mock Interview</a>
-              <a href="/dashboard/notes/my-notes" className="block p-2 text-sm hover:bg-muted/50 rounded transition">My Notes</a>
+              <Link href="/dashboard/interviews/react" className="block p-2 text-sm hover:bg-muted/50 rounded transition">
+                Practice React
+              </Link>
+              <Link href="/dashboard/challenges/medium" className="block p-2 text-sm hover:bg-muted/50 rounded transition">
+                Solve Challenge
+              </Link>
+              <Link href="/dashboard/mock-interviews/ai" className="block p-2 text-sm hover:bg-muted/50 rounded transition">
+                Mock Interview
+              </Link>
+              <Link href="/dashboard/notes/my-notes" className="block p-2 text-sm hover:bg-muted/50 rounded transition">
+                My Notes
+              </Link>
             </div>
           </div>
         </div>

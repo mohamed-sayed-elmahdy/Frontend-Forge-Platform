@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 import { Rocket, BookOpen, Code2, FileText } from "lucide-react";
 
 export default function DocumentationPage() {
@@ -54,7 +54,7 @@ export default function DocumentationPage() {
         {docs.map((doc, i) => {
           const Icon = doc.icon;
           return (
-            <a
+            <Link
               key={i}
               href={doc.href}
               className="rounded-xl border bg-card p-6 hover:shadow-md transition cursor-pointer group"
@@ -62,7 +62,7 @@ export default function DocumentationPage() {
               <Icon className={`${doc.color} mb-3 group-hover:scale-110 transition`} size={28} />
               <h2 className="font-bold text-lg mb-2">{doc.title}</h2>
               <p className="text-sm text-muted-foreground">{doc.description}</p>
-            </a>
+            </Link>
           );
         })}
       </div>
@@ -96,10 +96,18 @@ export default function DocumentationPage() {
       <div className="rounded-xl border bg-card p-6">
         <h2 className="text-2xl font-bold mb-4">Quick Links</h2>
         <div className="grid grid-cols-2 gap-2">
-          <a href="#" className="p-2 rounded bg-muted text-sm hover:bg-muted/80 transition">FAQ</a>
-          <a href="#" className="p-2 rounded bg-muted text-sm hover:bg-muted/80 transition">Support</a>
-          <a href="#" className="p-2 rounded bg-muted text-sm hover:bg-muted/80 transition">GitHub</a>
-          <a href="#" className="p-2 rounded bg-muted text-sm hover:bg-muted/80 transition">Community</a>
+          <Link href="#" className="p-2 rounded bg-muted text-sm hover:bg-muted/80 transition">
+            FAQ
+          </Link>
+          <Link href="#" className="p-2 rounded bg-muted text-sm hover:bg-muted/80 transition">
+            Support
+          </Link>
+          <Link href="#" className="p-2 rounded bg-muted text-sm hover:bg-muted/80 transition">
+            GitHub
+          </Link>
+          <Link href="#" className="p-2 rounded bg-muted text-sm hover:bg-muted/80 transition">
+            Community
+          </Link>
         </div>
       </div>
     </section>

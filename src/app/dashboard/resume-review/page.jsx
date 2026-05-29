@@ -1,7 +1,5 @@
-"use client";
-import React, { useState } from "react";
 import { FileText, Users, Bot, BarChart3 } from "lucide-react";
-
+import Link from "next/link";
 export default function ResumeReviewPage() {
   const services = [
     { id: 1, title: "Human Review", desc: "Expert review from industry professionals", icon: Users, color: "text-blue-500", href: "/dashboard/resume-review/human", price: "$49" },
@@ -22,7 +20,7 @@ export default function ResumeReviewPage() {
         {services.map(s => {
           const Icon = s.icon;
           return (
-            <a key={s.id} href={s.href} className="rounded-xl border bg-card p-6 hover:shadow-md transition group">
+            <Link key={s.id} href={s.href} className="rounded-xl border bg-card p-6 hover:shadow-md transition group">
               <Icon className={`${s.color} mb-3 group-hover:scale-110 transition`} size={28} />
               <h2 className="font-bold text-lg mb-2">{s.title}</h2>
               <p className="text-sm text-muted-foreground mb-4">{s.desc}</p>
@@ -30,7 +28,7 @@ export default function ResumeReviewPage() {
                 <span className="text-lg font-bold">{s.price}</span>
                 <span className="text-xs text-muted-foreground">→</span>
               </div>
-            </a>
+            </Link>
           );
         })}
       </div>
