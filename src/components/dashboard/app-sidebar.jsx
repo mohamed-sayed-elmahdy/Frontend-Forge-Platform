@@ -28,8 +28,6 @@ import {
   Frame, Command
 
 } from "lucide-react"
-
-
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
@@ -77,8 +75,6 @@ const data = {
         },
       ],
     },
-
-
     // =========================
     // CAREER & INTERVIEWS
     // =========================
@@ -102,7 +98,7 @@ const data = {
         },
       ],
     },
-
+    //  
     {
       title: "Interviews",
       url: "/dashboard/interviews",
@@ -277,7 +273,19 @@ const data = {
         },
       ],
     },
-
+  {
+      title: "When to Use",
+      url: "/dashboard/when-to-use",
+      icon: Swords,
+      colorIcon: "#104981",
+      items: [
+        {
+          title: "when to use Nuxt.js",
+          url: "/dashboard/when-to-use/nuxtjs",
+        },
+ 
+      ],
+    },
     {
       title: "Troubleshooting",
       url: "/dashboard/troubleshooting",
@@ -343,7 +351,30 @@ const data = {
         },
       ],
     },
-
+    {
+            title: "Marketing for Developers",
+      url: "/dashboard/marketing-for-developers",
+      icon: Command,
+      colorIcon: "#FB11f5",
+      items: [
+        {
+          title: "strategies",
+          url: "/dashboard/marketing-for-developers/strategies",
+        },
+        {
+          title: "Content Creation",
+          url: "/dashboard/marketing-for-developers/content-creation",
+        },
+        {
+          title: "tools",
+          url: "/dashboard/marketing-for-developers/tools",
+        },
+           {
+          title: "Secrets",
+          url: "/dashboard/marketing-for-developers/secrets",
+        },
+      ],
+    },
     {
       title: "Bookmarks",
       url: "/dashboard/bookmarks",
