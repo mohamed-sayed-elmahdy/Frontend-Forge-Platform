@@ -1,6 +1,6 @@
 "use client"
-import Image from "next/image"
 import Link from "next/link"
+import BrandLogo from "@/components/shared/BrandLogo"
 import {
   BookOpen,
   BrainCircuit,
@@ -547,7 +547,7 @@ export function AppSidebar({
               <Link href="/">
                 <div
                   className="flex  items-center justify-center ps-4">
-                  <Image src="/dark-logo.png" alt="Frontend Forge Logo" width={200} height={40}  />
+                  <BrandLogo variant="sidebar" />
 
                 </div>
                 {/* <div className="flex  text-left text-sm leading-tight">

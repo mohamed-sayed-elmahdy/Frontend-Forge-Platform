@@ -1,6 +1,6 @@
 "use client"
-import Image from "next/image"
 import Link from "next/link"
+import BrandLogo from "@/components/shared/BrandLogo"
 import { FaBloggerB } from "react-icons/fa";
 import { TbMapQuestion } from "react-icons/tb";
 
@@ -120,7 +120,7 @@ export default function AdminSidebar({
               <Link href="/admin/dashboard">
                 <div
                   className="flex items-center justify-center ps-4">
-                  <Image src="/dark-logo.png" alt="Frontend Forge Logo" width={200} height={40}  />
+                  <BrandLogo variant="sidebar" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">FrontEnd</span>

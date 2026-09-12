@@ -2,6 +2,7 @@
 "use client"
 import Image from "next/image"
 import { motion } from "motion/react"
+import BrandLogo from "@/components/shared/BrandLogo"
 import {
   BookOpen,
   BrainCircuit,
@@ -117,7 +118,7 @@ export default function DashboardPreview() {
                 <div className="border-b border-white/5 px-5 py-5">
                   <div className="flex items-center gap-0">
                     <div className="flex  items-center justify-center ps-4">
-                           <Image src="/dark-logo.png" alt="Frontend Forge Logo" width={200} height={40}  />
+                           <BrandLogo variant="preview" />
                     </div>
 
                   

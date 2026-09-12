@@ -7,9 +7,9 @@ import { HiOutlineMenu } from "react-icons/hi";
 import { IoIosCloseCircle } from "react-icons/io";
 import ButtonLink from "@/components/ui/ButtonLink";
 import NavLinks from "@/components/shared/NavLinks";
+import BrandLogo from "@/components/shared/BrandLogo";
 import ThemeSwitch from "@/components/shared/ThemeSwitch";
 import ToggleLocal from "@/components/ui/ToggleLocal";
-import Image from "next/image";
 
 function PublicNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,7 +51,7 @@ function PublicNavbar() {
           {/* <span className="text-[var(--text)] text-lg md:text-3xl font-extrabold">
             Frontend Forge
           </span> */}
-          <Image src="/dark-logo.png" alt="Frontend Forge Logo" width={200} height={40} className="mr-2" />
+          <BrandLogo variant="navbar" className="mr-2" />
         </Link>
 
         <div className="hidden md:flex items-center gap-4 md:gap-6 lg:gap-4 text-[var(--text)]">
