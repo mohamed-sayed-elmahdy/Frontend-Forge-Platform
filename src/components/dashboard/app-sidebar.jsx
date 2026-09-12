@@ -547,12 +547,12 @@ export function AppSidebar({
               <Link href="/">
                 <div
                   className="flex  items-center justify-center ps-4">
-                  <Image src="/logo3.png" alt="Frontend Forge Logo" width={50} height={40}  />
+                  <Image src="/dark-logo.png" alt="Frontend Forge Logo" width={200} height={40}  />
 
                 </div>
-                <div className="flex  text-left text-sm leading-tight">
+                {/* <div className="flex  text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Frontend Forge</span>
-                </div>
+                </div> */}
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

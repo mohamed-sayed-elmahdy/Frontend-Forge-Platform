@@ -117,13 +117,10 @@ export default function DashboardPreview() {
                 <div className="border-b border-white/5 px-5 py-5">
                   <div className="flex items-center gap-0">
                     <div className="flex  items-center justify-center ps-4">
-                           <Image src="/logo3.png" alt="Frontend Forge Logo" width={50} height={40}  />
+                           <Image src="/dark-logo.png" alt="Frontend Forge Logo" width={200} height={40}  />
                     </div>
 
-                    <div>
-                      <p className="text-sm font-semibold text-white">FrontEnd </p>
-                      <p className="text-xs text-zinc-400">Forge</p>
-                    </div>
+                  
                   </div>
                 </div>
 

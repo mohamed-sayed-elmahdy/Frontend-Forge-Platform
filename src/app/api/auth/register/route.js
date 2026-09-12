@@ -10,7 +10,7 @@ export async function POST(request) {
     const body = await request.json();
     const { name, email, password } = body;
 
-    // 1) Validation أساسي
+    // 1) Validation  
     if (!name || !email || !password) {
       return NextResponse.json(
         { success: false, message: "Name, email and password are required" },
@@ -25,7 +25,7 @@ export async function POST(request) {
       );
     }
 
-    // 2) هل الإيميل موجود قبل كده؟
+    // 2) Check if the email already exists in the database
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return NextResponse.json(
@@ -34,23 +34,23 @@ export async function POST(request) {
       );
     }
 
-    // 3) Hash للباسورد
+    // 3) Hash the password
     const hashedPassword = await hashPassword(password);
 
-    // 4) إنشاء اليوزر
+    // 4) Create the user
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
     });
 
-    // 5) إنشاء JWT
+    // 5) generate JWT
     const token = generateToken({
       userId: user._id.toString(),
       role: user.role,
     });
 
-    // 6) الرد + وضع التذكرة في HTTP-only Cookie
+    // 6)  Return the response with the token in a cookie
     const response = NextResponse.json(
       {
         success: true,
@@ -71,7 +71,7 @@ export async function POST(request) {
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24 * 7, // 7 أيام
+      maxAge: 60 * 60 * 24 * 7, // 1 week
     });
 
     return response;

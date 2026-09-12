@@ -120,7 +120,7 @@ export default function AdminSidebar({
               <Link href="/admin/dashboard">
                 <div
                   className="flex items-center justify-center ps-4">
-                  <Image src="/logo3.png" alt="Frontend Forge Logo" width={50} height={40}  />
+                  <Image src="/dark-logo.png" alt="Frontend Forge Logo" width={200} height={40}  />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">FrontEnd</span>
