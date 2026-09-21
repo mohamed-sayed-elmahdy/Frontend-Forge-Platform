@@ -1,4 +1,4 @@
-import { Outfit } from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Outfit } from "next/font/google";
 import "./globals.css";
 import AppProviders  from "@/providers/AppProviders";
 import { NextIntlClientProvider } from 'next-intl';
@@ -9,6 +9,13 @@ const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
+});
+
+const contactHeading = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+  variable: "--font-contact-heading",
 });
 
 export async function generateMetadata() {
@@ -36,7 +43,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning >
-      <body className={`${outfit.className} antialiased suppressHydrationWarning`}>
+      <body className={`${outfit.className} ${contactHeading.variable} antialiased suppressHydrationWarning`}>
         <NextIntlClientProvider messages={messages}>
           <AppProviders>{children}</AppProviders>
         </NextIntlClientProvider>

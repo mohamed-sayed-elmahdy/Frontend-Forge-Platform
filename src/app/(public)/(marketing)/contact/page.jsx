@@ -24,7 +24,7 @@ export default function ContactPage() {
                     <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full border-[24px] border-[var(--text-active)]/10" />
                     <div className="relative max-w-3xl">
                         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--text-active)]">{t('eyebrow')}</p>
-                        <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-[var(--text)] sm:text-6xl">{t('title')}</h1>
+                        <h1 style={{ fontFamily: 'var(--font-contact-heading)' }} className="max-w-2xl text-4xl font-bold tracking-tight text-[var(--text)] sm:text-6xl">{t('title')}</h1>
                         <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--text-muted)] sm:text-lg">{t('description')}</p>
                     </div>
                 </section>
